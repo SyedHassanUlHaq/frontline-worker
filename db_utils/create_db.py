@@ -3,6 +3,9 @@ import pandas as pd
 from psycopg2 import Error
 from datetime import datetime
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 # -----------------------------
 # Database connection settings
 # -----------------------------
