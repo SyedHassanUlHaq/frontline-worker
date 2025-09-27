@@ -2,14 +2,14 @@ import psycopg2
 import pandas as pd
 from psycopg2 import Error
 from datetime import datetime
-
+import os
 # -----------------------------
 # Database connection settings
 # -----------------------------
-DB_HOST = "dpg-d3bruaili9vc73d1qpe0-a.singapore-postgres.render.com"
-DB_NAME = "fronteirworker"
-DB_USER = "fronteirworker_user"
-DB_PASS = "Ex3xwdkI66H6M94hSITMieuHGgak5zai"
+DB_HOST = os.getenv("DB_HOST")
+DB_NAME = os.getenv("DB_NAME")
+DB_USER = os.getenv("DB_USER")
+DB_PASS = os.getenv("DB_PASSWORD")
 
 def parse_timestamp(val):
     """Convert timestamp field safely to datetime or None."""

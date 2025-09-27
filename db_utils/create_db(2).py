@@ -1,7 +1,6 @@
 import psycopg2
 
 # Database connection URL
-DB_URL = "postgresql://fronteirworker_user:Ex3xwdkI66H6M94hSITMieuHGgak5zai@dpg-d3bruaili9vc73d1qpe0-a.singapore-postgres.render.com/fronteirworker"
 
 def create_tables():
     conn = None
