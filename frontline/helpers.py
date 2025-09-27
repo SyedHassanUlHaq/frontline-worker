@@ -49,6 +49,7 @@ load_dotenv(find_dotenv())
 
 # Get the API key from environment variables
 OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY')
+print("openrouter api key", OPENROUTER_API_KEY)
 
 # Check if the API key is present; if not, raise an error
 if not OPENROUTER_API_KEY:
@@ -139,6 +140,57 @@ def classify_emergency_agent(latency, message):
             "department": "General",
             "emergency_level": 3
         }
+#####################################################
+# def secondary_agent(latency, message):
+#     """
+#     LLM agent which returns in json: department, emergency_level
+    
+#     Args:
+#         latency: Response time requirement
+#         message: Emergency message to classify
+    
+#     Returns:
+#         dict: JSON with department and emergency_level keys
+#     """
+#     secondary_agent = Agent(name="Secondary Agent", model=model)
+    
+#     prompt = f"""
+#     Analyze this emergency message and classify it based on the department and emergency level.
+    
+#     Message: {message}
+#     Response time requirement: {latency} seconds
+    
+#     Please respond with a JSON object containing:
+#     - department: Choose ONLY from these departments: "Police post", "Police Station", "Hospital", "Clinic", "Pharmacy", "Doctors", "Dentist"
+#     - emergency_level: The urgency level (1-5, where 1 is critical/life-threatening, 5 is low priority)
+    
+#     IMPORTANT: The department field MUST be exactly one of the listed departments above. Do not use any other department names.
+    
+#     Only return the JSON object, no additional text.
+#     """
+    
+#     result = Runner.run_sync(secondary_agent, prompt)
+    
+#     # Clean the response - remove markdown code blocks if present
+#     raw_response = result.final_output.strip()
+#     if raw_response.startswith('```json'):
+#         raw_response = raw_response[7:]  # Remove ```json
+#     if raw_response.startswith('```'):
+#         raw_response = raw_response[3:]   # Remove ```
+#     if raw_response.endswith('```'):
+#         raw_response = raw_response[:-3]  # Remove trailing ```
+    
+#     raw_response = raw_response.strip()
+    
+#     try:
+#         # Parse the JSON response
+#         response_json = json.loads(raw_response)
+#         return response_json
+#     except json.JSONDecodeError:
+#         # If JSON parsing fails, return a default response
+#         return {
+#             "response": "I'm sorry, I can't help with that."
+#         }
 
 
 # Test the classify_emergency_agent function
