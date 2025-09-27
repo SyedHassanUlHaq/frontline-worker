@@ -3,9 +3,9 @@ from django.db import models
 # Create your models here.
 class Chat(models.Model):
     message = models.TextField()
-    sender = models.CharField(max_length=255)   # renamed "from" → "sender" (since "from" is reserved in Python/SQL)
+    sender = models.CharField(max_length=255, null=True)   # renamed "from" → "sender" (since "from" is reserved in Python/SQL)
     topic = models.CharField(max_length=255, blank=True, null=True)
-    session_id = models.CharField(max_length=255, db_index=True)
+    session_id = models.CharField(max_length=255, db_index=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -23,12 +23,12 @@ class Summary(models.Model):
 
 class Appointment(models.Model):
     session_id = models.CharField(max_length=255, db_index=True)
-    department = models.CharField(max_length=255)
+    department = models.CharField(max_length=255, null=True)
     time = models.DateTimeField()
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField()
-    phone = models.CharField(max_length=20)
+    first_name = models.CharField(max_length=100, null=True)
+    last_name = models.CharField(max_length=100, null=True)
+    email = models.EmailField(null=True)
+    phone = models.CharField(max_length=20, null=True)
 
     def __str__(self):
         return f"Appointment {self.first_name} {self.last_name} ({self.department})"
