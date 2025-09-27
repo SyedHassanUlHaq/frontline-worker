@@ -106,18 +106,16 @@ try:
     for idx, row in df.iterrows():
         try:
             row_list = list(row)
-
-            # Fix timestamp (assuming column index of changeset_timestamp is 24)
             row_list[24] = parse_timestamp(row_list[24])
 
             cur.execute(insert_query, tuple(row_list))
+            conn.commit()  # commit per row
             if idx % 100 == 0:
                 print(f"   Inserted {idx} rows...")
         except Exception as e:
             print(f"⚠️ Skipping row {idx} due to error: {e}")
-            conn.rollback()  # reset transaction so future rows continue
+            conn.rollback()
 
-    conn.commit()
     print("✅ All rows inserted successfully.")
 
 except (Exception, Error) as e:
