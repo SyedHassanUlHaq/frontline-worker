@@ -1,0 +1,4 @@
+.venv/
+frontline/migrations/
+*/migrations/
+frontline_env
