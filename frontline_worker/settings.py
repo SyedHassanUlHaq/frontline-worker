@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'frontline_worker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'fronteirworker',
+        'USER': 'fronteirworker_user',
+        'PASSWORD': 'Ex3xwdkI66H6M94hSITMieuHGgak5zai',
+        'HOST': 'dpg-d3bruaili9vc73d1qpe0-a.singapore-postgres.render.com',
+        'PORT': '5432',
     }
 }
 
