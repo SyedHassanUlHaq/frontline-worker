@@ -59,6 +59,7 @@ class Chat(models.Model):
 class Summary(models.Model):
     summary_text = models.TextField()
     session_id = models.CharField(max_length=255, db_index=True)
+    wants_appointment = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
