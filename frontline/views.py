@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Chat, Summary
+from .models import Summary
 from django.db import transaction
 from .helpers import wants_appointment, get_closest_matching_department, classify_emergency_agent, user_facing_agent, appointment_agent, create_appointment, save_chat_messages, summarizing_agent, get_last_five_messages
 
